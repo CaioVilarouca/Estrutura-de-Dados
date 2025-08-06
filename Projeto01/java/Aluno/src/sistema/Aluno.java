@@ -9,7 +9,15 @@ public class Aluno {
 	}
 
 	public Aluno(String nome, char sexo) {
+		super();
 		this.nome = nome;
 		this.sexo = sexo;
 	}
+
+	@Override
+	public String toString() {
+		return "Aluno [nome=" + nome + ", sexo=" + sexo + "]";
+	}
+	
+	
 }
