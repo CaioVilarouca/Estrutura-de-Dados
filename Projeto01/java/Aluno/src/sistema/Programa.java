@@ -13,9 +13,14 @@ public class Programa {
 		Scanner scanner = new Scanner(System.in);
 		
 		char resposta;
+        // Coleta de notas
+		System.out.print("Quantas provas a ser aplicada: ");
+        int qtdProvas = scanner.nextInt();
 		do {
+			Boletim boletim = new Boletim();
+			
 			// Coleta de dados de Alunos | Quantas provas a ser aplicadas | Notas
-	        System.out.print("Nome do aluno:");
+	        System.out.print("Nome do aluno: ");
 	        String nome = scanner.nextLine();
 	        // Coleta do nome com no máximo 30 caracteres
 	        if (nome.length() > 30) { // Retorna o numero de caracteres dentro da string
@@ -26,10 +31,18 @@ public class Programa {
 			System.out.print("Sexo do M | F :");
 			char sexo = scanner.next().charAt(0);// Le apenas o primeiro caractere
 			
-			System.out.print("Quantas provas a ser aplicada: ");
-			int qtedProvas = scanner.nextInt();
+			// Add dados de aluno
+			Aluno aluno = new Aluno(nome, sexo);
 			
-			Aluno aluno = new Aluno(nome, sexo);	
+			// Tamanho do vetor Notas
+            boletim.inicializarNotas(qtdProvas);
+			
+            // Coleta de notas
+            for (int i = 0; i < qtdProvas; i++) {
+                System.out.printf("Nota da prova %d: ", i + 1);
+                double nota = scanner.nextDouble();
+                boletim.addNota(nota, i);
+            }
 
 			System.out.print("Deseja cadastrar outro aluno? (S/N): ");
 			resposta = scanner.next().charAt(0);
@@ -38,7 +51,6 @@ public class Programa {
 			// Scanner para consumir a quebra de linha
 			scanner.nextLine();
 		}while(resposta == 'S' || resposta == 's');
-		
 
 		scanner.close();
 	}
