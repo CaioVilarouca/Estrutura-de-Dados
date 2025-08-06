@@ -1,5 +1,7 @@
 package sistema;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -11,9 +13,7 @@ public class Programa {
 	public void sistema() {
 		Locale.setDefault(Locale.US);
 		Scanner scanner = new Scanner(System.in);
-		
-		Sistema turma = new Sistema();
-		
+				
 		char resposta;
 		
         // Coleta de notas
@@ -52,18 +52,19 @@ public class Programa {
             }
             
             // Add aluno na turma
-            turma.addAlunosNaTurma(boletim);
+
 
             // Sair loop 
 			System.out.print("Deseja cadastrar outro aluno? (S/N): ");
 			resposta = scanner.next().charAt(0);
 			
 			System.out.println("----------------------------------------------------------------------------------------------");
-			// Scanner para consumir a quebra de linha
+			//limpa o \n
 			scanner.nextLine();
+			
+			
 		}while(resposta == 'S' || resposta == 's');
 		
-		turma.listaDeAlunos();
 		
 		scanner.close();
 	}

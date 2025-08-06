@@ -7,12 +7,61 @@ public class Boletim {
 	    protected Double[] notas;
 	    private Double mediaAprovacao;
 	    private boolean aprovado;
-	    private Aluno aluno;
 
 	    public Boletim() {
 	    }
+	    
+	    
 
-	    // Inicializa o vetor de notas com base na quantidade de provas
+	    public Integer getQtdProvas() {
+			return qtdProvas;
+		}
+
+
+
+		public void setQtdProvas(Integer qtdProvas) {
+			this.qtdProvas = qtdProvas;
+		}
+
+
+
+		public Double[] getNotas() {
+			return notas;
+		}
+
+
+
+		public void setNotas(Double[] notas) {
+			this.notas = notas;
+		}
+
+
+
+		public Double getMediaAprovacao() {
+			return mediaAprovacao;
+		}
+
+
+
+		public void setMediaAprovacao(Double mediaAprovacao) {
+			this.mediaAprovacao = mediaAprovacao;
+		}
+
+
+
+		public boolean isAprovado() {
+			return aprovado;
+		}
+
+
+
+		public void setAprovado(boolean aprovado) {
+			this.aprovado = aprovado;
+		}
+
+
+
+		// Inicializa o vetor de notas com base na quantidade de provas
 	    public void inicializarNotas(int qtdProvas) {
 	        this.qtdProvas = qtdProvas;
 	        this.notas = new Double[qtdProvas];
@@ -23,42 +72,9 @@ public class Boletim {
 	            notas[i] = nota;
 	    }
 
-		public Integer getQtdProvas() {
-			return qtdProvas;
-		}
-
-		public void setQtdProvas(Integer qtdProvas) {
-			this.qtdProvas = qtdProvas;
-		}
-
-		public Double[] getNotas() {
-			return notas;
-		}
-
-		public void setNotas(Double[] notas) {
-			this.notas = notas;
-		}
-
-		public Double getMediaAprovacao() {
-			return mediaAprovacao;
-		}
-
-		public void setMediaAprovacao(Double mediaAprovacao) {
-			this.mediaAprovacao = mediaAprovacao;
-		}
-
-		public boolean isAprovado() {
-			return aprovado;
-		}
-
-		public void setAprovado(boolean aprovado) {
-			this.aprovado = aprovado;
-		}
-
 		@Override
 		public String toString() {
-			return "Boletim [qtdProvas=" + qtdProvas + ", notas=" + Arrays.toString(notas) + ", aluno=" + aluno + "]";
+			return "Boletim [qtdProvas=" + qtdProvas + ", notas=" + Arrays.toString(notas) + ", mediaAprovacao="
+					+ mediaAprovacao + ", aprovado=" + aprovado + "]";
 		}
-		
-		
 }
