@@ -13,12 +13,17 @@ public class Programa {
 	public void sistema() {
 		Locale.setDefault(Locale.US);
 		Scanner scanner = new Scanner(System.in);
+		
+		// lista da turma
+		List<RegistroAluno> turma = new ArrayList<>();
 				
 		char resposta;
 		
         // Coleta de notas
 		System.out.print("Quantas provas a ser aplicada: ");
         int qtdProvas = scanner.nextInt();
+		System.out.print("Qual a media de aprovação: ");
+        double media = scanner.nextDouble();
         scanner.nextLine(); // limpa o \n
         
 		do {			
@@ -43,6 +48,9 @@ public class Programa {
 			
 			// Tamanho do vetor Notas
             boletim.inicializarNotas(qtdProvas);
+            
+            // Media de aprovacao
+            boletim.setMediaAprovacao(media);
 			
             // Coleta de notas
             for (int i = 0; i < qtdProvas; i++) {
@@ -52,6 +60,8 @@ public class Programa {
             }
             
             // Add aluno na turma
+            RegistroAluno registro = new RegistroAluno(aluno, boletim);
+            turma.add(registro);
 
 
             // Sair loop 
@@ -65,6 +75,36 @@ public class Programa {
 			
 		}while(resposta == 'S' || resposta == 's');
 		
+		// Ordenar por média
+        turma.sort((a, b) -> Double.compare(b.getBoletim().calcularMedia(), a.getBoletim().calcularMedia()));
+
+        // Exibir relatório
+        System.out.println("\n--- RELATÓRIO FINAL (Ordenado por Média) ---");
+        for (RegistroAluno reg : turma) {
+            System.out.println(reg);
+        }
+
+        // Estatísticas por sexo
+        int aprovadosM = 0, reprovadosM = 0;
+        int aprovadosF = 0, reprovadosF = 0;
+
+        for (RegistroAluno reg : turma) {
+            char sexo = Character.toUpperCase(reg.getAluno().getSexo());
+            boolean aprovado = reg.getBoletim().esAprovado();
+
+            if (sexo == 'M') {
+                if (aprovado) aprovadosM++;
+                else reprovadosM++;
+            } else if (sexo == 'F') {
+                if (aprovado) aprovadosF++;
+                else reprovadosF++;
+            }
+        }
+
+        System.out.println("\n--- ESTATÍSTICAS POR SEXO ---");
+        System.out.printf("Masculino - Aprovados: %d | Reprovados: %d\n", aprovadosM, reprovadosM);
+        System.out.printf("Feminino  - Aprovados: %d | Reprovados: %d\n", aprovadosF, reprovadosF);
+
 		
 		scanner.close();
 	}

@@ -71,6 +71,19 @@ public class Boletim {
 	    public void addNota(int i, double nota) {
 	            notas[i] = nota;
 	    }
+	    
+	    public double calcularMedia() {
+	        double soma = 0;
+	        for (double nota : notas) {
+	            soma += nota;
+	        }
+	        return soma / notas.length;
+	    }
+
+	    public boolean esAprovado() {
+	        return calcularMedia() >= mediaAprovacao;
+	    }
+
 
 		@Override
 		public String toString() {

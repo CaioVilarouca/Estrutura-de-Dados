@@ -16,4 +16,14 @@ public class RegistroAluno {
     public Boletim getBoletim() {
         return boletim;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Nome: %-30s Sexo: %c Média: %.2f Situação: %s",
+                aluno.getNome(),
+                aluno.getSexo(),
+                boletim.calcularMedia(),
+                boletim.isAprovado() ? "Aprovado" : "Reprovado"
+        );
+    }
 }
