@@ -12,12 +12,5 @@ public class Aluno {
 		super();
 		this.nome = nome;
 		this.sexo = sexo;
-	}
-
-	@Override
-	public String toString() {
-		return "Aluno [nome=" + nome + ", sexo=" + sexo + "]";
-	}
-	
-	
+	}	
 }

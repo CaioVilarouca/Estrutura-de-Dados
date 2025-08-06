@@ -12,24 +12,34 @@ public class Programa {
 		Locale.setDefault(Locale.US);
 		Scanner scanner = new Scanner(System.in);
 		
-		// Coleta de dados de Alunos | Quantas provas a ser aplicadas | Notas
-        System.out.print("Nome do aluno:");
-        String nome = scanner.nextLine();
-        // Coleta do nome com no máximo 30 caracteres
-        if (nome.length() > 30) { // Retorna o numero de caracteres dentro da string
-            nome = nome.substring(0, 30); // é usado para pegar uma parte (subtexto) 
-            System.out.println("Nome foi cortado para 30 caracteres.");
-        }
+		char resposta;
+		do {
+			// Coleta de dados de Alunos | Quantas provas a ser aplicadas | Notas
+	        System.out.print("Nome do aluno:");
+	        String nome = scanner.nextLine();
+	        // Coleta do nome com no máximo 30 caracteres
+	        if (nome.length() > 30) { // Retorna o numero de caracteres dentro da string
+	            nome = nome.substring(0, 30); // é usado para pegar uma parte (subtexto) 
+	            System.out.println("Nome foi cortado para 30 caracteres.");
+	        }
+			
+			System.out.print("Sexo do M | F :");
+			char sexo = scanner.next().charAt(0);// Le apenas o primeiro caractere
+			
+			System.out.print("Quantas provas a ser aplicada: ");
+			int qtedProvas = scanner.nextInt();
+			
+			Aluno aluno = new Aluno(nome, sexo);	
+
+			System.out.print("Deseja cadastrar outro aluno? (S/N): ");
+			resposta = scanner.next().charAt(0);
+			
+			System.out.println("----------------------------------------------------------------------------------------------");
+			// Scanner para consumir a quebra de linha
+			scanner.nextLine();
+		}while(resposta == 'S' || resposta == 's');
 		
-		System.out.print("Sexo do M | F :");
-		char sexo = scanner.next().charAt(0);// Le apenas o primeiro caractere
-		
-		System.out.print("Quantas provas a ser aplicada: ");
-		int qtedProvas = scanner.nextInt();
-		
-		Aluno aluno = new Aluno(nome, sexo);
-		System.out.println(aluno);
-		
+
 		scanner.close();
 	}
 }
