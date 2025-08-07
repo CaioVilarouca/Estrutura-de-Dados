@@ -3,8 +3,8 @@
 
 #define MAX_PROVAS 10 // Limites max de provas que oo sistema 
 
-int qtdAlunos = 0, qtdProvas, mediaAprovacao = 0; // Var acumulativa 
-
+int qtdAlunos = 0, qtdProvas; // Var acumulativa 
+float mediaAprovacao;
 
 // Definição da estrutura Aluno, que agrupa os dados de cada aluno
 struct Aluno {
@@ -55,17 +55,14 @@ int main() {
             // A primeira posicao do vetor esta acomulando a soma das notas
             Turma[qtdAlunos].Notas[0] += Turma[qtdAlunos].Notas[i]; 
         }
-       Turma[qtdAlunos].Resultado = Turma[qtdAlunos].Notas[0] / qtdProvas >= mediaAprovacao; 
+        //Turma[qtdAlunos].Resultado = Turma[qtdAlunos].Notas[0] / qtdProvas >= mediaAprovacao; 
 
         // Pergunta se deseja adicionar mais alunos
         printf("Deseja cadastrar outro aluno? (S/N): ");
         scanf(" %c", &Resposta); // Corrigido: espaço antes do %c ignora enter anterior
 
-
-
-        // Incrementa a quantidade de alunos cadastrados
-        qtdAlunos++; 
-
-
+        qtdAlunos++;
     } while (Resposta == 'S' || Resposta == 's');
+
+    printf("\n  Quantidade de Alunos: [%d]  \n", qtdAlunos);
 }
