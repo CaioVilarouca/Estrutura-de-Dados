@@ -99,6 +99,7 @@ public class Programa {
                 if (aprovado) aprovadosF++;
                 else reprovadosF++;
             }
+            
         }
 
         System.out.println("\n--- ESTATÍSTICAS POR SEXO ---");
