@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h> 
+#include <ctype.h>
 
 #define MAX_PROVAS 10 // Limites max de provas que oo sistema 
 
@@ -10,7 +11,7 @@ float mediaAprovacao;
 struct Aluno {
     char Nome[30];  // Esse campo so permite 30 caractere    
     float Notas[MAX_PROVAS];   
-   // char Sexo;         
+    char Sexo;         
     bool Resultado;      
 };
 
@@ -18,6 +19,13 @@ int main() {
 
     Aluno Turma[100]; // Vector de limite max de 100 alunos por turma
     char Resposta;
+
+
+    // Novas variaveis para estatisticas por sexo
+    int totalMasc = 0, totalFem = 0;
+    int aprovMasc = 0, aprovFem = 0;
+    int reprovMasc = 0, reprovFem = 0;
+
 
     // Regra de negocio
     // Quantas provas vao ser aplicado para todos os alunos
@@ -45,6 +53,14 @@ int main() {
         scanf("%s", Turma[qtdAlunos].Nome); 
 
 
+        //  Entrada do sexo com validacao (aceita M ou F)
+        do {
+            printf("    Informe o sexo (M/F): ");
+            scanf(" %c", &Turma[qtdAlunos].Sexo);
+            Turma[qtdAlunos].Sexo = toupper(Turma[qtdAlunos].Sexo); // força letra maiúscula
+        } while (Turma[qtdAlunos].Sexo != 'M' && Turma[qtdAlunos].Sexo != 'F');
+
+
         // Pecorrendo o vetor na linha 09
         for (int i = 1; i <= qtdProvas; i++){
 
@@ -55,7 +71,26 @@ int main() {
             // A primeira posicao do vetor esta acomulando a soma das notas
             Turma[qtdAlunos].Notas[0] += Turma[qtdAlunos].Notas[i]; 
         }
-        //Turma[qtdAlunos].Resultado = Turma[qtdAlunos].Notas[0] / qtdProvas >= mediaAprovacao; 
+
+
+        // Calc a media do aluno
+        Turma[qtdAlunos].Resultado = Turma[qtdAlunos].Notas[0] / qtdProvas >= mediaAprovacao; 
+
+        //  Atualiza as estatisticas de acordo com o sexo e se foi aprovado ou nao
+        if (Turma[qtdAlunos].Sexo == 'M') {
+            totalMasc++;
+            if (Turma[qtdAlunos].Resultado)
+                aprovMasc++;
+            else
+                reprovMasc++;
+        } else {
+            totalFem++;
+            if (Turma[qtdAlunos].Resultado)
+                aprovFem++;
+            else
+                reprovFem++;
+        }
+
 
         // Pergunta se deseja adicionar mais alunos
         printf("Deseja cadastrar outro aluno? (S/N): ");
@@ -64,5 +99,37 @@ int main() {
         qtdAlunos++;
     } while (Resposta == 'S' || Resposta == 's');
 
+
+
+    
+
     printf("\n  Quantidade de Alunos: [%d]  \n", qtdAlunos);
+
+    printf("\n--- Alunos Aprovados ---\n");
+    for (int i = 0; i < qtdAlunos; i++) {
+        if (Turma[i].Resultado) {
+            printf("Nome: %-10s | Sexo: %c | Situacao: Aprovado\n", Turma[i].Nome, Turma[i].Sexo);
+        }
+    }
+
+    printf("\n--- Alunos Reprovados ---\n");
+    for (int i = 0; i < qtdAlunos; i++) {
+        if (!Turma[i].Resultado) {
+            printf("Nome: %-10s | Sexo: %c | Situacao: Reprovado\n", Turma[i].Nome, Turma[i].Sexo);
+        }
+    }
+
+   
+    printf("\n======= ESTATISTICAS POR SEXO =======\n");
+
+    printf("\nMasculino:\n");
+    printf("  Total:     %d\n", totalMasc);
+    printf("  Aprovados: %d\n", aprovMasc);
+    printf("  Reprovados:%d\n", reprovMasc);
+
+    printf("\nFeminino:\n");
+    printf("  Total:     %d\n", totalFem);
+    printf("  Aprovadas: %d\n", aprovFem);
+    printf("  Reprovadas:%d\n", reprovFem);
+
 }
