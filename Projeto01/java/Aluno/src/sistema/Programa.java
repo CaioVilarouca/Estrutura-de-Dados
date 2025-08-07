@@ -37,7 +37,7 @@ public class Programa {
 	        // Coleta do nome com no máximo 30 caracteres
 	        if (nome.length() > 30) { // Retorna o numero de caracteres dentro da string
 	            nome = nome.substring(0, 30); // é usado para pegar uma parte (subtexto) 
-	            System.out.println("Nome foi cortado para 30 caracteres.");
+	            System.out.println("Nome foi cortado pro exceder mais do que 30 caracteres");
 	        }
 			
 			System.out.print("Sexo do M | F :");
@@ -75,16 +75,16 @@ public class Programa {
 			
 		}while(resposta == 'S' || resposta == 's');
 		
-		// Ordenar por média
+		// Ordenar por media
         turma.sort((a, b) -> Double.compare(b.getBoletim().calcularMedia(), a.getBoletim().calcularMedia()));
 
-        // Exibir relatório
-        System.out.println("\n--- RELATÓRIO FINAL (Ordenado por Média) ---");
+        // Exibir relatorio
+        System.out.println("\n--- RELATORIO FINAL (Ordenado por Media) ---");
         for (RegistroAluno reg : turma) {
             System.out.println(reg);
         }
 
-        // Estatísticas por sexo
+        // Estatisticas por sexo
         int aprovadosM = 0, reprovadosM = 0;
         int aprovadosF = 0, reprovadosF = 0;
 

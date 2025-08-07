@@ -6,7 +6,6 @@ public class Boletim {
 	  	private Integer qtdProvas = 0;
 	    protected Double[] notas;
 	    private Double mediaAprovacao;
-	    private boolean aprovado;
 
 	    public Boletim() {
 	    }
@@ -34,6 +33,7 @@ public class Boletim {
 	            notas[i] = nota;
 	    }
 	    
+	   
 	    public double calcularMedia() {
 	        double soma = 0;
 	        for (double nota : notas) {
@@ -50,7 +50,7 @@ public class Boletim {
 		@Override
 		public String toString() {
 			return "Boletim [qtdProvas=" + qtdProvas + ", notas=" + Arrays.toString(notas) + ", mediaAprovacao="
-					+ mediaAprovacao + ", aprovado=" + aprovado + "]";
+					+ mediaAprovacao;
 		}
 
 }
