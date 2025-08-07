@@ -90,13 +90,13 @@ public class Programa {
 
         for (RegistroAluno reg : turma) {
             char sexo = Character.toUpperCase(reg.getAluno().getSexo());
-            boolean aprovado = reg.getBoletim().esAprovado();
+            boolean	resultado = reg.getBoletim().esAprovado();
 
             if (sexo == 'M') {
-                if (aprovado) aprovadosM++;
+                if (resultado) aprovadosM++;
                 else reprovadosM++;
             } else if (sexo == 'F') {
-                if (aprovado) aprovadosF++;
+                if (resultado) aprovadosF++;
                 else reprovadosF++;
             }
             
