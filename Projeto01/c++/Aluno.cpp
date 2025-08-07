@@ -3,7 +3,7 @@
 
 //#define MAX_PROVA 10;
 
-int qtdAlunos = 0, soma = 0, media; // Var acumulativa 
+int qtdAlunos = 0, qtdProvas; // Var acumulativa 
 
 
 // Definição da estrutura Aluno, que agrupa os dados de cada aluno
@@ -24,7 +24,17 @@ int main() {
 
 
         // Regra de negocio
+        do {
+            printf("\n   Infrome a quantidade de provas: ");
+            scanf("%i", &qtdProvas);
 
+            // Quantidade provas a ser aplicado do MAX 10 provas
+            if( qtdProvas < 1 || qtdProvas > 10){
+                printf("\n Atencao! Entre 1 e 10 Provas.");
+            }
+
+            // Quantidade tem ser maior ou igual a um ou menor ou igual a dez
+        }while(qtdProvas < 1 || qtdProvas > 10);
 
         
         // Leia Nome do aluno e guarda o nome na posicao qtdAlunos no vetor Turma
