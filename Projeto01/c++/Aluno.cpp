@@ -74,6 +74,7 @@ int main() {
 
 
         // Calc a media do aluno
+        // Resultado recebe o True ou False
         Turma[qtdAlunos].Resultado = Turma[qtdAlunos].Notas[0] / qtdProvas >= mediaAprovacao; 
 
         //  Atualiza as estatisticas de acordo com o sexo e se foi aprovado ou nao
@@ -107,6 +108,7 @@ int main() {
 
     printf("\n--- Alunos Aprovados ---\n");
     for (int i = 0; i < qtdAlunos; i++) {
+        // true ou false
         if (Turma[i].Resultado) {
             printf("Nome: %-10s | Sexo: %c | Situacao: Aprovado\n", Turma[i].Nome, Turma[i].Sexo);
         }
@@ -114,12 +116,12 @@ int main() {
 
     printf("\n--- Alunos Reprovados ---\n");
     for (int i = 0; i < qtdAlunos; i++) {
+        // resultado for diferente de true 
         if (!Turma[i].Resultado) {
             printf("Nome: %-10s | Sexo: %c | Situacao: Reprovado\n", Turma[i].Nome, Turma[i].Sexo);
         }
     }
 
-   
     printf("\n======= ESTATISTICAS POR SEXO =======\n");
 
     printf("\nMasculino:\n");
