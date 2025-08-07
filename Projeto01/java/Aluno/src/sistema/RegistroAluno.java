@@ -23,7 +23,7 @@ public class RegistroAluno {
                 aluno.getNome(),
                 aluno.getSexo(),
                 boletim.calcularMedia(),
-                boletim.isAprovado() ? "Aprovado" : "Reprovado"
+                boletim.esAprovado() ? "Aprovado" : "Reprovado"
         );
     }
 }

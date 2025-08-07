@@ -10,32 +10,6 @@ public class Boletim {
 
 	    public Boletim() {
 	    }
-	    
-	    
-
-	    public Integer getQtdProvas() {
-			return qtdProvas;
-		}
-
-
-
-		public void setQtdProvas(Integer qtdProvas) {
-			this.qtdProvas = qtdProvas;
-		}
-
-
-
-		public Double[] getNotas() {
-			return notas;
-		}
-
-
-
-		public void setNotas(Double[] notas) {
-			this.notas = notas;
-		}
-
-
 
 		public Double getMediaAprovacao() {
 			return mediaAprovacao;
@@ -45,18 +19,6 @@ public class Boletim {
 
 		public void setMediaAprovacao(Double mediaAprovacao) {
 			this.mediaAprovacao = mediaAprovacao;
-		}
-
-
-
-		public boolean isAprovado() {
-			return aprovado;
-		}
-
-
-
-		public void setAprovado(boolean aprovado) {
-			this.aprovado = aprovado;
 		}
 
 
@@ -90,4 +52,5 @@ public class Boletim {
 			return "Boletim [qtdProvas=" + qtdProvas + ", notas=" + Arrays.toString(notas) + ", mediaAprovacao="
 					+ mediaAprovacao + ", aprovado=" + aprovado + "]";
 		}
+
 }
