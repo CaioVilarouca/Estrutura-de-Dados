@@ -64,6 +64,7 @@ int main() {
 
 
         // Pecorrendo o vetor na linha 09
+        Turma[qtdAlunos].Notas[0] = 0;// Essa intrucao nao eh opcional! por causa da linha 75
         for (int i = 1; i <= qtdProvas; i++){
 
             // Leia uma nota e guarde na posicao I das notas do aluno de numero qtdAlunos
@@ -111,7 +112,7 @@ int main() {
     for (int i = 0; i < qtdAlunos; i++) {
         // true ou false
         if (Turma[i].Resultado) {
-            printf("Nome: %-10s | Sexo: %c | Situacao: Aprovado\n", Turma[i].Nome, Turma[i].Sexo);
+            printf("Nome: %-10s | Sexo: %c | Situacao: Aprovado com a media %0.2f \n", Turma[i].Nome, Turma[i].Sexo, mediaAprovacao);
         }
     }
 
@@ -119,16 +120,18 @@ int main() {
     for (int i = 0; i < qtdAlunos; i++) {
         // resultado for diferente de true 
         if (!Turma[i].Resultado) {
-            printf("Nome: %-10s | Sexo: %c | Situacao: Reprovado\n", Turma[i].Nome, Turma[i].Sexo);
+            printf("Nome: %-10s | Sexo: %c | Situacao: Reprovado com a media %0.2f \n", Turma[i].Nome, Turma[i].Sexo, mediaAprovacao);
         }
     }
 
+    char simbolo = 219;
     printf("\n======= ESTATISTICAS POR SEXO =======\n");
 
     printf("\nMasculino:\n");
     printf("  Total:     %d\n", totalMasc);
     printf("  Aprovados: %d\n", aprovMasc);
     printf("  Reprovados:%d\n", reprovMasc);
+    printf("A media de  homens aprovados foi %d", aprovMasc / totalMasc);
 
     printf("\nFeminino:\n");
     printf("  Total:     %d\n", totalFem);
