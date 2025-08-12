@@ -2,12 +2,12 @@
 #include <stdbool.h> 
 #include <ctype.h>
 
-#define MAX_PROVAS 10 // Limites max de provas que oo sistema 
+#define MAX_PROVAS 10 // Limites max de provas que o sistema 
 
 int qtdAlunos = 0, qtdProvas; // Var acumulativa 
 float mediaAprovacao;
 
-// Definição da estrutura Aluno, que agrupa os dados de cada aluno
+// Definicao da estrutura Aluno, que agrupa os dados de cada aluno
 struct Aluno {
     char Nome[30];  // Esse campo so permite 30 caractere    
     float Notas[MAX_PROVAS];   
@@ -30,7 +30,7 @@ int main() {
     // Regra de negocio
     // Quantas provas vao ser aplicado para todos os alunos
     do {
-        printf("\n   Infrome a quantidade de provas: ");
+        printf("\n   Informe a quantidade de provas: ");
         scanf("%i", &qtdProvas);
 
         // Quantidade provas a ser aplicado do MAX 10 provas
@@ -41,10 +41,12 @@ int main() {
         // Quantidade tem ser maior ou igual a um ou menor ou igual a dez
     }while(qtdProvas < 1 || qtdProvas > MAX_PROVAS);// Operador OU e ||
 
-
-    // Media de aprovacao
-    printf("\n Informe a media de para aprovacao: ");
-    scanf("%f", &mediaAprovacao);
+    // Regra de negocio
+    do {
+      // Media de aprovacao
+      printf("\n Informe a media de para aprovacao: (Media 5 e 8) ");
+      scanf("%f", &mediaAprovacao);
+    } while ( mediaAprovacao < 5 or mediaAprovacao > 8);
 
     do {
         
@@ -57,7 +59,7 @@ int main() {
         do {
             printf("    Informe o sexo (M/F): ");
             scanf(" %c", &Turma[qtdAlunos].Sexo);
-            Turma[qtdAlunos].Sexo = toupper(Turma[qtdAlunos].Sexo); // força letra maiúscula
+            Turma[qtdAlunos].Sexo = toupper(Turma[qtdAlunos].Sexo); // forca letra maiuscula
         } while (Turma[qtdAlunos].Sexo != 'M' && Turma[qtdAlunos].Sexo != 'F');
 
 
@@ -76,6 +78,7 @@ int main() {
         // Calc a media do aluno
         // Resultado recebe o True ou False
         Turma[qtdAlunos].Resultado = Turma[qtdAlunos].Notas[0] / qtdProvas >= mediaAprovacao; 
+        // Evita HARD CODED
 
         //  Atualiza as estatisticas de acordo com o sexo e se foi aprovado ou nao
         if (Turma[qtdAlunos].Sexo == 'M') {
@@ -99,11 +102,9 @@ int main() {
 
         qtdAlunos++;
     } while (Resposta == 'S' || Resposta == 's');
-
-
-
+    // Fim do loop 
     
-
+    // Resultado do dados coletados
     printf("\n  Quantidade de Alunos: [%d]  \n", qtdAlunos);
 
     printf("\n--- Alunos Aprovados ---\n");
