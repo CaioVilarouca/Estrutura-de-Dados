@@ -4,7 +4,7 @@
 
 #define MAX_PROVAS 10 // Limites max de provas que o sistema 
 
-int qtdAlunos = 0, qtdProvas; // Var acumulativa 
+int qtdAlunos=0, qtdProvas; // Var acumulativa 
 float mediaAprovacao;
 
 // Definicao da estrutura Aluno, que agrupa os dados de cada aluno
@@ -22,15 +22,15 @@ int main() {
 
 
     // Novas variaveis para estatisticas por sexo
-    int totalMasc = 0, totalFem = 0;
-    int aprovMasc = 0, aprovFem = 0;
-    int reprovMasc = 0, reprovFem = 0;
+    int totalMasc=0, totalFem=0;
+    int aprovMasc=0, aprovFem=0;
+    int reprovMasc=0, reprovFem=0;
 
 
     // Regra de negocio
     // Quantas provas vao ser aplicado para todos os alunos
     do {
-        printf("\n   Informe a quantidade de provas: ");
+        printf("\n   Informe a quantidade de provas: (Limite max de 10 provas.)");
         scanf("%i", &qtdProvas);
 
         // Quantidade provas a ser aplicado do MAX 10 provas
@@ -44,7 +44,7 @@ int main() {
     // Regra de negocio
     do {
       // Media de aprovacao
-      printf("\n Informe a media de para aprovacao: (Media 5 e 8) ");
+      printf("\n Informe a media de para aprovacao: (Media entre 5 e 8): ");
       scanf("%f", &mediaAprovacao);
     } while ( mediaAprovacao < 5 or mediaAprovacao > 8);
 
@@ -78,7 +78,7 @@ int main() {
 
         // Calc a media do aluno
         // Resultado recebe o True ou False
-        Turma[qtdAlunos].Resultado = Turma[qtdAlunos].Notas[0] / qtdProvas >= mediaAprovacao; 
+        Turma[qtdAlunos].Resultado=Turma[qtdAlunos].Notas[0] / qtdProvas >= mediaAprovacao; 
         // Evita HARD CODED
 
         //  Atualiza as estatisticas de acordo com o sexo e se foi aprovado ou nao
@@ -112,7 +112,7 @@ int main() {
     for (int i = 0; i < qtdAlunos; i++) {
         // true ou false
         if (Turma[i].Resultado) {
-            printf("Nome: %-10s | Sexo: %c | Situacao: Aprovado com a media %0.2f \n", Turma[i].Nome, Turma[i].Sexo, mediaAprovacao);
+            printf("Nome: %-10s | Sexo: %c | Situacao: [ Aprovado ] com a media %0.2f \n", Turma[i].Nome, Turma[i].Sexo, mediaAprovacao);
         }
     }
 
@@ -120,18 +120,16 @@ int main() {
     for (int i = 0; i < qtdAlunos; i++) {
         // resultado for diferente de true 
         if (!Turma[i].Resultado) {
-            printf("Nome: %-10s | Sexo: %c | Situacao: Reprovado com a media %0.2f \n", Turma[i].Nome, Turma[i].Sexo, mediaAprovacao);
+            printf("Nome: %-10s | Sexo: %c | Situacao: [ Reprovado ] com a media %0.2f \n", Turma[i].Nome, Turma[i].Sexo, mediaAprovacao);
         }
     }
 
-    char simbolo = 219;
-    printf("\n======= ESTATISTICAS POR SEXO =======\n");
+    printf("\n------- ESTATISTICAS POR SEXO -------\n");
 
     printf("\nMasculino:\n");
     printf("  Total:     %d\n", totalMasc);
     printf("  Aprovados: %d\n", aprovMasc);
     printf("  Reprovados:%d\n", reprovMasc);
-    printf("A media de  homens aprovados foi %d", aprovMasc / totalMasc);
 
     printf("\nFeminino:\n");
     printf("  Total:     %d\n", totalFem);
