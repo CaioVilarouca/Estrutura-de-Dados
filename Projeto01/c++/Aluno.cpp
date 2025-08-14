@@ -115,7 +115,6 @@ int main() {
     } while (Resposta == 'S');
     // Fim do loop 
 
-
    do {
         // Menu de registro aluno
         printf ("\n[1] Registro de Aprovados\n[2] Registro de Reprovados\n[3] Estatistica\n[0] Sair\nInforme: ");
@@ -159,6 +158,5 @@ int main() {
             break;
         }    
     } while (Opcao != 0);
-    // Fim do loop 
     printf("\n Encerramento de registro");
 }
