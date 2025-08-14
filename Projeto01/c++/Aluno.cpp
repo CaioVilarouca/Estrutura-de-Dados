@@ -4,8 +4,9 @@
 
 #define MAX_PROVAS 10 // Limites max de provas 
 
-int qtdAlunos = 0, qtdProvas; // Var acumulativa 
+int qtdAlunos = 0, qtdProvas, totalMasc=0, totalFem=0, aprovMasc=0, aprovFem=0, reprovMasc=0, reprovFem=0; 
 float MediaAprovacao;
+char Resposta;
 
 // Definicao da estrutura Aluno, que agrupa os dados de cada aluno
 struct Aluno { 
@@ -18,21 +19,15 @@ struct Aluno {
 
 int main() {
 
-    Aluno Turma[100]; // Vector de limite max de 100 alunos por turma
-    char Resposta;
-
-    // Novas variaveis para estatisticas por sexo
-    int totalMasc=0, totalFem=0;
-    int aprovMasc=0, aprovFem=0;
-    int reprovMasc=0, reprovFem=0;
+    Aluno Turma[100]; // Vetor de limite max de 100 alunos por turma
 
     // Regra de negocio
     do {
         // Quantas provas vao ser aplicado para todos os alunos
-        printf("\n Informe a quantidade de provas: (Limite max de 10 provas.)");
+        printf("\nInforme a quantidade de provas: (Limite max de 10 provas.): ");
         scanf("%i", &qtdProvas);
 
-        // Quantidade provas a ser aplicado MAX 10 provas
+        // Quantidade provas a ser aplicado o MAX 10 provas
         // || Se a primeira condicao ja for true, nao avalia a segunda
         if(qtdProvas < 1 || qtdProvas > MAX_PROVAS){
             printf("\n Atencao! Entre 1 e 10 Provas.");
@@ -43,39 +38,42 @@ int main() {
 
     do {
       // Media de aprovacao
-      printf("\n Informe a media de para aprovacao: (Media entre 05 e 08): ");
+      printf("\nInforme a media de para aprovacao: (Media entre 05 e 08): ");
       scanf("%f", &MediaAprovacao);
     } while ( MediaAprovacao < 5 || MediaAprovacao > 8);
 
     do {
         // Leia Nome do aluno e guarda o nome na posicao qtdAlunos no vetor Turma
-        printf("\n Informe o nome do %i. aluno: ", qtdAlunos + 1);
-        scanf(" %29[^\n]", Turma[qtdAlunos].Nome); 
+        printf("\nInforme o nome do %i. aluno: ", qtdAlunos + 1);
+        scanf(" %29[^\n]", Turma[qtdAlunos].Nome); // 29 caractere nesse campo
 
         //  Entrada do sexo com validacao (aceita M ou F)
         do {
             printf("Informe o sexo (M/F): ");
             scanf(" %c", &Turma[qtdAlunos].Sexo);
             Turma[qtdAlunos].Sexo = toupper(Turma[qtdAlunos].Sexo); // forca a letra maiuscula
+
+            if (Turma[qtdAlunos].Sexo != 'M' && Turma[qtdAlunos].Sexo != 'F'){
+                printf("Esse campo so aceita M ou F \n");
+            }
         } while (Turma[qtdAlunos].Sexo != 'M' && Turma[qtdAlunos].Sexo != 'F');
 
-        // Pecorrendo o vetor na linha 09
-        Turma[qtdAlunos].Notas[0] = 0;// Essa intrucao nao eh opcional! por causa da linha 75
+        // Pecorrendo o vetor na linha 21
+        Turma[qtdAlunos].Notas[0] = 0;// Essa intrucao nao eh opcional! por causa da linha 74
         for (int i = 1; i <= qtdProvas; i++){
 
             // Leia uma nota e guarde na posicao I das notas do aluno de numero qtdAlunos
-            printf("    Informe a %i. nota: ", i);
+            printf("Informe a %i. nota: ", i);
             scanf("%f", &Turma[qtdAlunos].Notas[i]);// Um agregador container
 
             // Acomulando a soma das notas na posicao 0 do vetor
             Turma[qtdAlunos].Notas[0] += Turma[qtdAlunos].Notas[i]; 
         }
 
-        // Calc a media do aluno
-        // Evita HARD CODED com a var MediaAprovacao
-        // Resultado recebe o True ou False
+        // Resultado recebe o True ou False | Evita HARD CODED com a var MediaAprovacao
         Turma[qtdAlunos].Resultado = Turma[qtdAlunos].Notas[0] / qtdProvas >= MediaAprovacao; // Resultado da media do aluno
-        Turma[qtdAlunos].NotaObtida = Turma[qtdAlunos].Notas[0] / qtdProvas; // Calc da nota final do aluno
+        // Ternario para var NotaObtida inicializar sempre 
+        Turma[qtdAlunos].NotaObtida = (Turma[qtdAlunos].Notas[0] > 0) ? Turma[qtdAlunos].Notas[0] / qtdProvas : 0.0f; // Soma final
 
         //  Atualiza as estatisticas de acordo com o sexo e se foi aprovado ou nao
         if (Turma[qtdAlunos].Sexo == 'M') {
