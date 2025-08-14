@@ -9,17 +9,16 @@ float MediaAprovacao;
 char Resposta;
 
 // Definicao da estrutura Aluno, que agrupa os dados de cada aluno
-/*
 struct Aluno { 
     char Nome[30];  // Esse campo so permite 30 caractere    
     float Notas[MAX_PROVAS];   
     float NotaObtida; // Media final do aluno
     char Sexo;         
     bool Resultado;      
-};*/
+};
 
 int main() {
-/*
+
     Aluno Turma[100]; // Vetor de limite max de 100 alunos por turma
 
     // Regra de negocio
@@ -85,7 +84,7 @@ int main() {
             (Turma[qtdAlunos].Resultado) ? aprovFem++ : reprovFem++;
         }
 
-        // codigo antigo
+        /* codigo antigo
         if (Turma[qtdAlunos].Sexo == 'M') {
             totalMasc++;
             if (Turma[qtdAlunos].Resultado)
@@ -98,7 +97,7 @@ int main() {
                 aprovFem++;
             else
                 reprovFem++;
-        }
+        }*/
 
         // Saida do loop principal        
         printf("Deseja cadastrar outro aluno? (S/N): ");
@@ -115,28 +114,41 @@ int main() {
         qtdAlunos++; 
     } while (Resposta == 'S');
     // Fim do loop 
-*/
+
 
    do {
         // Menu de registro aluno
-        printf ("[0] Sair\n[1] Registro de Aprovados\n[2] Registro de Reprovados\nInforme: ");
+        printf ("\n[1] Registro de Aprovados\n[2] Registro de Reprovados\nInforme: ");
         scanf("%d", &Opcao);
 
         // Menu
         switch (Opcao){
         case 1:
             printf("Registro de alunos Aprovados\n");
+            printf("\n  Quantidade de Alunos: [%d]  \n", qtdAlunos);
+        for (int i = 0; i < qtdAlunos; i++) {
+        // true ou false
+            if (Turma[i].Resultado) {
+                printf("Nome: %-10s \nSexo: %c \nStatus: APROVADO\nMedia solicitada: %.2f \nMedia obtida: %.2f \n---------\n", Turma[i].Nome, Turma[i].Sexo, MediaAprovacao, Turma[i].NotaObtida);
+            }
+        }  
             break;
         case 2:
             printf("Registro de alunos Reprovados\n");
+            for (int i = 0; i < qtdAlunos; i++) {
+                // resultado for diferente de true 
+                if (!Turma[i].Resultado) {
+                printf("Nome: %-10s \nSexo: %c \nStatus: REPROVADO\nMedia solicitada: %.2f \nMedia obtida: %.2f \n---------\n", Turma[i].Nome, Turma[i].Sexo, MediaAprovacao, Turma[i].NotaObtida);
+                }
+            }
             break;
         case 3:
             printf("Grafico\n");
             // Grafico 
             break;
         default:
-            while (Opcao != 1 && Opcao != 2 && Opcao != 3  && Opcao != 0){
-                printf ("Esse campo so aceita esses valores! \n[0] Sair\n[1] Registro de Aprovados\n[3] Registro de Reprovados\nInforme: ");
+            while (Opcao != 1 && Opcao != 2 && Opcao != 3){
+                printf ("Esse campo so aceita esses valores!\n[1] Registro de Aprovados\n[3] Registro de Reprovados\nInforme: ");
                 scanf("%d", &Opcao);
             }
             break;
@@ -155,26 +167,10 @@ int main() {
         }        
     } while (Resposta == 'N');
     // Fim do loop 
+    printf("\n Encerramento de registro");
 }
 // codigo antigo
 /*   // Resultado do dados coletados
-    printf("\n  Quantidade de Alunos: [%d]  \n", qtdAlunos);
-
-    printf("\n--- Alunos Aprovados ---\n");
-    for (int i = 0; i < qtdAlunos; i++) {
-        // true ou false
-        if (Turma[i].Resultado) {
-            printf("Nome: %-10s | Sexo: %c | Situacao: [Aprovado] A media solicitada foi %0.2f e a nota obtida \n", Turma[i].Nome, Turma[i].Sexo, MediaAprovacao);
-        }
-    }        
-
-    printf("\n--- Alunos Reprovados ---\n");
-    for (int i = 0; i < qtdAlunos; i++) {
-        // resultado for diferente de true 
-        if (!Turma[i].Resultado) {
-            printf("Nome: %-10s | Sexo: %c | Situacao: [Reprovado] A media solicitada foi %.2f e a nota obtida \n", Turma[i].Nome, Turma[i].Sexo, MediaAprovacao);
-        }
-    }
 
     printf("\n------- ESTATISTICAS POR SEXO -------\n");
 
@@ -184,34 +180,4 @@ int main() {
     printf("  Reprovados:%d\n", reprovMasc);
     printf("  Porcetagem de alunos Masc %.2f \n", ((float)aprovMasc / totalMasc) * 100);
   
-    #include <iostream>
-using namespace std;
-
-int main() {
-    int opcao;
-
-    cout << "Digite um número de 1 a 3: ";
-    cin >> opcao;
-
-    switch (opcao) {
-        case 1:
-            cout << "Você escolheu a opção 1" << endl;
-            break;
-        case 2:
-            cout << "Você escolheu a opção 2" << endl;
-            break;
-        case 3:
-            cout << "Você escolheu a opção 3" << endl;
-            break;
-        default:
-            cout << "Opção inválida!" << endl;
-    }
-
-    return 0;
-}
-
-
-    printf("\nFeminino:\n");
-    printf("  Total:     %d\n", totalFem);
-    printf("  Aprovadas: %d\n", aprovFem);
-    printf("  Reprovadas:%d\n", reprovFem);*/
+*/
