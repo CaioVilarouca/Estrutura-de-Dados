@@ -78,6 +78,15 @@ int main() {
         //  Atualiza as estatisticas de acordo com o sexo e se foi aprovado ou nao
         if (Turma[qtdAlunos].Sexo == 'M') {
             totalMasc++;
+            (Turma[qtdAlunos].Resultado) ? aprovMasc++ : reprovMasc++;
+        } else {
+            totalFem++;
+            (Turma[qtdAlunos].Resultado) ? aprovFem++ : reprovFem++;
+        }
+
+        // codigo antigo
+        /*if (Turma[qtdAlunos].Sexo == 'M') {
+            totalMasc++;
             if (Turma[qtdAlunos].Resultado)
                 aprovMasc++;
             else
@@ -88,7 +97,7 @@ int main() {
                 aprovFem++;
             else
                 reprovFem++;
-        }
+        }*/
 
         // Saida do loop principal        
         printf("Deseja cadastrar outro aluno? (S/N): ");
