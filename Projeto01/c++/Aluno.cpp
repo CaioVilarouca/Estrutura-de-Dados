@@ -75,6 +75,9 @@ int main() {
         // Ternario para var NotaObtida inicializar sempre 
         Turma[qtdAlunos].NotaObtida = (Turma[qtdAlunos].Notas[0] > 0) ? Turma[qtdAlunos].Notas[0] / qtdProvas : 0.0f; // Soma final
 
+        // Codigo antigo
+        //Turma[qtdAlunos].NotaObtida = Turma[qtdAlunos].Notas[0] / qtdProvas;
+
         //  Atualiza as estatisticas de acordo com o sexo e se foi aprovado ou nao
         if (Turma[qtdAlunos].Sexo == 'M') {
             totalMasc++;
