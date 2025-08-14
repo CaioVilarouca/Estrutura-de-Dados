@@ -12,7 +12,7 @@ char Resposta;
 struct Aluno { 
     char Nome[30];  // Esse campo so permite 30 caractere    
     float Notas[MAX_PROVAS];   
-    float NotaObtida; // media final do aluno
+    float NotaObtida; // Media final do aluno
     char Sexo;         
     bool Resultado;      
 };
@@ -89,14 +89,37 @@ int main() {
             else
                 reprovFem++;
         }
-        // Pergunta se deseja adicionar mais alunos
-        printf("Deseja cadastrar outro aluno? (S/N): ");
-        scanf(" %c", &Resposta); // Corrigido: espaço antes do %c ignora enter anterior
 
-        qtdAlunos++;
-    } while (Resposta == 'S' || Resposta == 's');
+        // Saida do loop principal        
+        printf("Deseja cadastrar outro aluno? (S/N): ");
+        scanf(" %c", &Resposta); // espaço antes do %c ignora enter anterior
+        Resposta = toupper(Resposta);
+
+        // Eu so comeco esse while si a respota for diferente de S ou N
+        while (Resposta != 'S' && Resposta != 'N') {
+            printf("Esse campo só aceita (S/N): ");
+            scanf(" %c", &Resposta);
+            Resposta = toupper(Resposta);
+        }
+
+        qtdAlunos++; 
+    } while (Resposta == 'S');
     // Fim do loop 
 
+   do {
+        // Saida do loop secundario        
+        printf("Deseja sair do registro? (S/N): ");
+        scanf(" %c", &Resposta); // espaço antes do %c ignora enter anterior
+        Resposta = toupper(Resposta);
+
+        // Eu so comeco esse while si a respota for diferente de S ou N
+        while (Resposta != 'S' && Resposta != 'N') {
+            printf("Esse campo só aceita (S/N): ");
+            scanf(" %c", &Resposta);
+            Resposta = toupper(Resposta);
+        }        
+    } while (Resposta == 'S');
+    // Fim do loop 
 }
 // codigo antigo
 /*   // Resultado do dados coletados
