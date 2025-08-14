@@ -4,21 +4,22 @@
 
 #define MAX_PROVAS 10 // Limites max de provas 
 
-int qtdAlunos = 0, qtdProvas, totalMasc=0, totalFem=0, aprovMasc=0, aprovFem=0, reprovMasc=0, reprovFem=0; 
+int qtdAlunos=0, qtdProvas, totalMasc=0, totalFem=0, aprovMasc=0, aprovFem=0, reprovMasc=0, reprovFem=0, Opcao=0; 
 float MediaAprovacao;
 char Resposta;
 
 // Definicao da estrutura Aluno, que agrupa os dados de cada aluno
+/*
 struct Aluno { 
     char Nome[30];  // Esse campo so permite 30 caractere    
     float Notas[MAX_PROVAS];   
     float NotaObtida; // Media final do aluno
     char Sexo;         
     bool Resultado;      
-};
+};*/
 
 int main() {
-
+/*
     Aluno Turma[100]; // Vetor de limite max de 100 alunos por turma
 
     // Regra de negocio
@@ -85,7 +86,7 @@ int main() {
         }
 
         // codigo antigo
-        /*if (Turma[qtdAlunos].Sexo == 'M') {
+        if (Turma[qtdAlunos].Sexo == 'M') {
             totalMasc++;
             if (Turma[qtdAlunos].Resultado)
                 aprovMasc++;
@@ -97,7 +98,7 @@ int main() {
                 aprovFem++;
             else
                 reprovFem++;
-        }*/
+        }
 
         // Saida do loop principal        
         printf("Deseja cadastrar outro aluno? (S/N): ");
@@ -114,8 +115,33 @@ int main() {
         qtdAlunos++; 
     } while (Resposta == 'S');
     // Fim do loop 
+*/
 
    do {
+        // Menu de registro aluno
+        printf ("[0] Sair\n[1] Registro de Aprovados\n[2] Registro de Reprovados\nInforme: ");
+        scanf("%d", &Opcao);
+
+        // Menu
+        switch (Opcao){
+        case 1:
+            printf("Registro de alunos Aprovados\n");
+            break;
+        case 2:
+            printf("Registro de alunos Reprovados\n");
+            break;
+        case 3:
+            printf("Grafico\n");
+            // Grafico 
+            break;
+        default:
+            while (Opcao != 1 && Opcao != 2 && Opcao != 3  && Opcao != 0){
+                printf ("Esse campo so aceita esses valores! \n[0] Sair\n[1] Registro de Aprovados\n[3] Registro de Reprovados\nInforme: ");
+                scanf("%d", &Opcao);
+            }
+            break;
+        }
+
         // Saida do loop secundario        
         printf("Deseja sair do registro? (S/N): ");
         scanf(" %c", &Resposta); // espaço antes do %c ignora enter anterior
@@ -127,7 +153,7 @@ int main() {
             scanf(" %c", &Resposta);
             Resposta = toupper(Resposta);
         }        
-    } while (Resposta == 'S');
+    } while (Resposta == 'N');
     // Fim do loop 
 }
 // codigo antigo
@@ -158,6 +184,31 @@ int main() {
     printf("  Reprovados:%d\n", reprovMasc);
     printf("  Porcetagem de alunos Masc %.2f \n", ((float)aprovMasc / totalMasc) * 100);
   
+    #include <iostream>
+using namespace std;
+
+int main() {
+    int opcao;
+
+    cout << "Digite um número de 1 a 3: ";
+    cin >> opcao;
+
+    switch (opcao) {
+        case 1:
+            cout << "Você escolheu a opção 1" << endl;
+            break;
+        case 2:
+            cout << "Você escolheu a opção 2" << endl;
+            break;
+        case 3:
+            cout << "Você escolheu a opção 3" << endl;
+            break;
+        default:
+            cout << "Opção inválida!" << endl;
+    }
+
+    return 0;
+}
 
 
     printf("\nFeminino:\n");
