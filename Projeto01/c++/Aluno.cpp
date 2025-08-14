@@ -118,14 +118,13 @@ int main() {
 
    do {
         // Menu de registro aluno
-        printf ("\n[1] Registro de Aprovados\n[2] Registro de Reprovados\nInforme: ");
+        printf ("\n[1] Registro de Aprovados\n[2] Registro de Reprovados\n[3] Estatistica\n[0] Sair\nInforme: ");
         scanf("%d", &Opcao);
 
         // Menu
         switch (Opcao){
         case 1:
-            printf("Registro de alunos Aprovados\n");
-            printf("\n  Quantidade de Alunos: [%d]  \n", qtdAlunos);
+            printf("\nRegistro de alunos Aprovados | quantidade de alunos: %i\n", aprovMasc + aprovFem);
         for (int i = 0; i < qtdAlunos; i++) {
         // true ou false
             if (Turma[i].Resultado) {
@@ -134,7 +133,7 @@ int main() {
         }  
             break;
         case 2:
-            printf("Registro de alunos Reprovados\n");
+            printf("\nRegistro de alunos Reprovados | quantidade de alunos: %i\n", reprovFem + reprovMasc);
             for (int i = 0; i < qtdAlunos; i++) {
                 // resultado for diferente de true 
                 if (!Turma[i].Resultado) {
@@ -142,42 +141,24 @@ int main() {
                 }
             }
             break;
-        case 3:
-            printf("Grafico\n");
-            // Grafico 
+        case 3:  
+            printf("Quantidade total de alunos %i \n", qtdAlunos);     // Cast
+            printf("Porcetagem de alunos Masc APROVADOS   %.2f \n", ((float)aprovMasc / totalMasc) * 100);
+            printf("Porcetagem de alunos Fem APROVADOS    %.2f \n", ((float)aprovFem / totalFem) * 100);
+            printf("Porcetagem dda turma APROVADOS  %.2f \n", ((float)(aprovMasc + aprovFem) / qtdAlunos) * 100);
+            printf("---------------------------------\n");
+            printf("Porcetagem de alunos Masc REPROVADOS   %.2f \n", ((float)reprovMasc / totalMasc) * 100);
+            printf("Porcetagem de alunos Fem REPROVADOS    %.2f \n", ((float)reprovFem / totalFem) * 100);
+            printf("Porcetagem da turma REPROVADOS  %.2f \n", ((float)(reprovMasc + reprovFem) / qtdAlunos) * 100);
             break;
         default:
-            while (Opcao != 1 && Opcao != 2 && Opcao != 3){
-                printf ("Esse campo so aceita esses valores!\n[1] Registro de Aprovados\n[3] Registro de Reprovados\nInforme: ");
+            while (Opcao != 1 && Opcao != 2 && Opcao != 3 && Opcao != 0){
+                printf ("Esse campo so aceita esses valores!\n[1] Registro de Aprovados\n[3] Registro de Reprovados\n[3] Sair\nInforme: ");
                 scanf("%d", &Opcao);
             }
             break;
-        }
-
-        // Saida do loop secundario        
-        printf("Deseja sair do registro? (S/N): ");
-        scanf(" %c", &Resposta); // espaço antes do %c ignora enter anterior
-        Resposta = toupper(Resposta);
-
-        // Eu so comeco esse while si a respota for diferente de S ou N
-        while (Resposta != 'S' && Resposta != 'N') {
-            printf("Esse campo só aceita (S/N): ");
-            scanf(" %c", &Resposta);
-            Resposta = toupper(Resposta);
-        }        
-    } while (Resposta == 'N');
+        }    
+    } while (Opcao != 0);
     // Fim do loop 
     printf("\n Encerramento de registro");
 }
-// codigo antigo
-/*   // Resultado do dados coletados
-
-    printf("\n------- ESTATISTICAS POR SEXO -------\n");
-
-    printf("\nMasculino:\n");
-    printf("  Total:     %d\n", totalMasc);
-    printf("  Aprovados: %d\n", aprovMasc);
-    printf("  Reprovados:%d\n", reprovMasc);
-    printf("  Porcetagem de alunos Masc %.2f \n", ((float)aprovMasc / totalMasc) * 100);
-  
-*/
